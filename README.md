@@ -79,31 +79,7 @@ graph LR
     style END fill:#ef4444,color:#fff
 ```
 
----
-
-## 📁 Project Structure
-
-```
-final_langgraph/
-│
-├── basic_chatbot.ipynb                  # v1: Jupyter Notebook prototype
-│
-├── langgraph_backend.py                 # Backend with InMemorySaver (volatile)
-├── langgraph_database_backend.py        # Backend with SqliteSaver (persistent)
-│
-├── streamlit_frontend.py                # v2: Basic invoke-mode frontend
-├── streamlit_frontend_streaming.py      # v3: Token-level streaming frontend
-├── streamlit_frontend_threading.py      # v4: Multi-thread session management
-├── streamlit_frontend_database.py       # v5: Full-featured with SQLite persistence
-│
-├── chatbot.db                           # SQLite database (auto-generated)
-├── .env                                 # Environment variables (API keys)
-├── .gitignore                           # Git ignore rules
-├── myenv/                               # Python virtual environment
-└── README.md                            # This file
-```
-
----
+--
 
 ## 🛠 Tech Stack
 
@@ -178,49 +154,6 @@ streamlit run streamlit_frontend_database.py
 
 The app will open at **http://localhost:8501**.
 
----
-
-## 📦 Application Versions
-
-The project was built incrementally, with each version adding new capabilities:
-
-### v1 — Basic Chatbot (Jupyter Notebook)
-
-**File:** `basic_chatbot.ipynb`
-
-A minimal prototype built in a Jupyter Notebook to validate the LangGraph workflow. Defines the `ChatState`, creates a simple `chat_node`, and compiles the graph with a `MemorySaver` checkpointer. Includes a `while True` input loop for terminal-based interaction.
-
-### v2 — Streamlit Frontend (Invoke Mode)
-
-**Files:** `langgraph_backend.py` + `streamlit_frontend.py`
-
-Moves the chatbot to a web interface using Streamlit. Uses `chatbot.invoke()` to send messages and receive full responses. Maintains conversation history in `st.session_state`. Single thread (`thread-1`) — no session switching.
-
-### v3 — Streaming Interface
-
-**Files:** `langgraph_backend.py` + `streamlit_frontend_streaming.py`
-
-Replaces `chatbot.invoke()` with `chatbot.stream()` using `stream_mode="messages"`. AI responses appear **token-by-token** in real time via `st.write_stream()`, providing a significantly better user experience.
-
-### v4 — Multi-Thread Session Management
-
-**Files:** `langgraph_backend.py` + `streamlit_frontend_threading.py`
-
-Introduces **multiple conversation threads** with UUID-based thread IDs. Sidebar UI with:
-- **New Chat** button to start fresh conversations
-- **Conversation list** to switch between past sessions
-- `chatbot.get_state()` to reload conversation history from any thread
-
-Uses `InMemorySaver` — sessions are lost on server restart.
-
-### v5 — Persistent SQLite Database
-
-**Files:** `langgraph_database_backend.py` + `streamlit_frontend_database.py`
-
-Replaces `InMemorySaver` with `SqliteSaver` backed by a SQLite database (`chatbot.db`). Conversations **persist across server restarts**. Includes `retrieve_all_threads()` to load all historical thread IDs on startup.
-
----
-
 ## 🔍 How It Works
 
 ### LangGraph Workflow
@@ -277,20 +210,6 @@ for message_chunk, metadata in chatbot.stream(
 ```
 
 This is rendered in Streamlit using `st.write_stream()`, giving users immediate visual feedback as the AI generates its response.
-
----
-
-## 📸 Screenshots
-
-> Run the application locally with `streamlit run streamlit_frontend_database.py` to see the full UI with sidebar conversation management and real-time streaming.
-
----
-
-## 📄 License
-
-This project is for educational and academic purposes.
-
----
 
 <p align="center">
   Built with ❤️ using LangGraph, LangChain, and Streamlit
