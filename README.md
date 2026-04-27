@@ -1,34 +1,6 @@
 # 🤖 LangGraph-Based Stateful Conversational AI Chatbot with Streaming Interface
 
 A **stateful conversational AI chatbot** built using [LangGraph](https://langchain-ai.github.io/langgraph/) with graph-based workflow orchestration and thread-based session management. Features **persistent memory** using SQLite for storing and retrieving multiple chat sessions, an interactive **Streamlit** interface with seamless conversation switching, and **token-level streaming** for real-time AI responses.
-
----
-
-## 📑 Table of Contents
-
-- [Features](#-features)
-- [Architecture](#-architecture)
-- [Project Structure](#-project-structure)
-- [Tech Stack](#-tech-stack)
-- [Getting Started](#-getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Environment Variables](#environment-variables)
-  - [Running the Application](#running-the-application)
-- [Application Versions](#-application-versions)
-  - [v1 — Basic Chatbot (Jupyter Notebook)](#v1--basic-chatbot-jupyter-notebook)
-  - [v2 — Streamlit Frontend (Invoke Mode)](#v2--streamlit-frontend-invoke-mode)
-  - [v3 — Streaming Interface](#v3--streaming-interface)
-  - [v4 — Multi-Thread Session Management](#v4--multi-thread-session-management)
-  - [v5 — Persistent SQLite Database](#v5--persistent-sqlite-database)
-- [How It Works](#-how-it-works)
-  - [LangGraph Workflow](#langgraph-workflow)
-  - [State Management](#state-management)
-  - [Checkpointing & Memory](#checkpointing--memory)
-  - [Token-Level Streaming](#token-level-streaming)
-- [Screenshots](#-screenshots)
-- [License](#-license)
-
 ---
 
 ## ✨ Features
@@ -210,7 +182,3 @@ for message_chunk, metadata in chatbot.stream(
 ```
 
 This is rendered in Streamlit using `st.write_stream()`, giving users immediate visual feedback as the AI generates its response.
-
-<p align="center">
-  Built with ❤️ using LangGraph, LangChain, and Streamlit
-</p>
